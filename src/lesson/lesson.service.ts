@@ -12,13 +12,14 @@ export class LessonService {
     ) { }
 
     async createLesson(CreateLessonInput: CreateLessonInput): Promise<Lesson> {
-        const { name, startDate, endDate } = CreateLessonInput;
+        const { name, startDate, endDate, students } = CreateLessonInput;
 
         const lesson = this.LessonRepository.create({
             id: uuid(),
             name,
             startDate,
-            endDate
+            endDate,
+            students
         });
 
         return this.LessonRepository.save(lesson);
@@ -32,5 +33,13 @@ export class LessonService {
 
     async getAllLessons(): Promise<Lesson[]> {
         return this.LessonRepository.find();
+    }
+
+    async assignStudentsToLesson(lessonId: string, studentIds: string[]): Promise<Lesson> {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        const lesson = await this.LessonRepository.findOne({ id: lessonId });
+        lesson.students = [...lesson.students, ...studentIds];
+        return this.LessonRepository.save(lesson);
     }
 }

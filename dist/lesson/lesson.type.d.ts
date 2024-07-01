@@ -3,4 +3,5 @@ export declare class LessonType {
     name: string;
     startDate: string;
     endDate: string;
+    students: string[];
 }

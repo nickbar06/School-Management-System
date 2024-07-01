@@ -7,4 +7,5 @@ export declare class LessonService {
     createLesson(CreateLessonInput: CreateLessonInput): Promise<Lesson>;
     getLesson(id: string): Promise<Lesson>;
     getAllLessons(): Promise<Lesson[]>;
+    assignStudentsToLesson(lessonId: string, studentIds: string[]): Promise<Lesson>;
 }

@@ -23,12 +23,13 @@ let LessonService = class LessonService {
         this.LessonRepository = LessonRepository;
     }
     async createLesson(CreateLessonInput) {
-        const { name, startDate, endDate } = CreateLessonInput;
+        const { name, startDate, endDate, students } = CreateLessonInput;
         const lesson = this.LessonRepository.create({
             id: (0, uuid_1.v4)(),
             name,
             startDate,
-            endDate
+            endDate,
+            students
         });
         return this.LessonRepository.save(lesson);
     }
@@ -37,6 +38,11 @@ let LessonService = class LessonService {
     }
     async getAllLessons() {
         return this.LessonRepository.find();
+    }
+    async assignStudentsToLesson(lessonId, studentIds) {
+        const lesson = await this.LessonRepository.findOne({ id: lessonId });
+        lesson.students = [...lesson.students, ...studentIds];
+        return this.LessonRepository.save(lesson);
     }
 };
 exports.LessonService = LessonService;

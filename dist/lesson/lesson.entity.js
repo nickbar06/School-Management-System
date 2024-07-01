@@ -34,6 +34,10 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Lesson.prototype, "endDate", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Array)
+], Lesson.prototype, "students", void 0);
 exports.Lesson = Lesson = __decorate([
     (0, typeorm_1.Entity)()
 ], Lesson);

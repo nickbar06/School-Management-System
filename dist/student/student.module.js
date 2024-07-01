@@ -25,6 +25,9 @@ exports.StudentModule = StudentModule = __decorate([
         providers: [
             student_resolver_1.StudentResolver,
             student_service_1.StudentService
+        ],
+        exports: [
+            student_service_1.StudentService
         ]
     })
 ], StudentModule);

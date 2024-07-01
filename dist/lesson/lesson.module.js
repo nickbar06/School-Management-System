@@ -12,6 +12,9 @@ const lesson_resolver_1 = require("./lesson.resolver");
 const lesson_service_1 = require("./lesson.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const lesson_entity_1 = require("./lesson.entity");
+const student_service_1 = require("../student/student.service");
+const student_module_1 = require("../student/student.module");
+const student_entity_1 = require("../student/student.entity");
 let LessonModule = class LessonModule {
 };
 exports.LessonModule = LessonModule;
@@ -20,11 +23,14 @@ exports.LessonModule = LessonModule = __decorate([
         imports: [
             typeorm_1.TypeOrmModule.forFeature([
                 lesson_entity_1.Lesson,
-            ])
+                student_entity_1.Student
+            ]),
+            student_module_1.StudentModule
         ],
         providers: [
             lesson_resolver_1.LessonResolver,
             lesson_service_1.LessonService,
+            student_service_1.StudentService,
         ]
     })
 ], LessonModule);
